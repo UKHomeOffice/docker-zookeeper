@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: zookeeper-2
+  labels:
+    name: zookeeper-2
+    zookeeper_id: "2"
+spec:
+  replicas: 1
+  selector:
+    name: zookeeper-2
+    zookeeper_id: "2"
+  template:
+    metadata:
+      labels:
+        name: zookeeper-2
+        zookeeper_id: "2"
+    spec:
+      containers:
+        - name: zookeeper
+          image: vaijab/zk
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "512Mi"
+          env:
+            - name: ZK_SERVER_HEAP
+              value: "300"
+            - name: ZK_MYID
+              value: "2"
+            - name: ZK_NUMBER_OF_NODES
+              value: "3"
+            - name: ZK_SERVICE_NAME
+              value: "zookeeper"
+          ports:
+            - containerPort: 2181
+            - containerPort: 2888
+            - containerPort: 3888

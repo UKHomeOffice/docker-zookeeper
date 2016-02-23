@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper-3
+  labels:
+    name: zookeeper-3
+    service: zookeeper
+    zookeeper_id: "3"
+spec:
+  type: NodePort
+  ports:
+    - name: client
+      port: 2181
+    - name: follower
+      port: 2888
+    - name: election
+      port: 3888
+  clusterIP: 10.200.10.33
+  type: ClusterIP
+  selector:
+    name: zookeeper-3
+    zookeeper_id: "3"
