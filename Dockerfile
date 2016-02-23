@@ -1,8 +1,7 @@
-FROM alpine:3.3
+FROM fedora:23
 
-RUN apk upgrade
-
-RUN apk add --update --no-cache openjdk8-jre bash
+RUN dnf upgrade -y -q; dnf clean all
+RUN dnf install -y -q java-headless tar wget; dnf clean all
 
 EXPOSE 2181 2888 3888
 
