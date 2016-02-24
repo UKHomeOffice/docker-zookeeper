@@ -10,7 +10,7 @@ By default, if you don't specify any parameters, zookeeper will start in
 standalone mode.
 
 Deploying onto a Kubernetes cluster is fairly easy. There are example
-kubernetes controller and service files in which is what we're going to use.
+kubernetes controller and service files in [kube/](kube/) directory.
 
 In the service yaml files, you will notice that we asked for static
 `ClusterIP`, in this example case, we're using `10.200.0.0/16` service IP
@@ -35,8 +35,8 @@ $ kubectl create -f kube/zookeeper-3-service.yaml
 ```
 
 Let's list the services. There are four services, `zookeeper` service is
-pointing to all zookeeper instances - for clients to use. The rest is pointing
-to each relevant zookeeper instance.
+pointing to all zookeeper instances - for clients to use. The rest are pointing
+to each relevant zookeeper pod.
 
 ```bash
 $ kubectl get services
