@@ -72,20 +72,27 @@ key to `bar`, then kill the Pod and try to get `/foo` from another zookeeper
 instance:
 
 ```bash
-$ kubectl --namespace exec -ti zookeeper-1-w3u4g bash
+$ kubectl exec -ti zookeeper-1-w3u4g bash
 
 [root@zookeeper-1-w3u4g zookeeper]# bin/zkCli.sh
 [zk: localhost:2181(CONNECTED) 1] create /foo bar
 Created /foo
 [zk: localhost:2181(CONNECTED) 2] get /foo
 bar
+```
 
-$ kubectl --namespace exec -ti zookeeper-3-vcl94 bash
+Delete the pod we just used to set the `/foo` value:
+```
+$ kubectl delete zookeeper-1-w3u4g
+$ kubectl exec -ti zookeeper-3-vcl94 bash
 
 [root@zookeeper-3-vcl94 zookeeper]# bin/zkCli.sh
 [zk: localhost:2181(CONNECTED) 0] get /foo
 bar
 ```
+
+This just shows that if one node dies, the cluster is still functioning and the
+deleted pod will be re-created by the replication controller.
 
 ### Known Caveats
 
