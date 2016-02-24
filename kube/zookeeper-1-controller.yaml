@@ -38,3 +38,9 @@ spec:
             - containerPort: 2181
             - containerPort: 2888
             - containerPort: 3888
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - emptyDir: {}
+          name: data
