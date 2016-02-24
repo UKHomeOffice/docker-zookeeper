@@ -16,6 +16,7 @@ spec:
       labels:
         name: zookeeper-2
         zookeeper_id: "2"
+        service: zookeeper
     spec:
       containers:
         - name: zookeeper
