@@ -1,7 +1,7 @@
-FROM fedora:23
+FROM quay.io/ukhomeofficedigital/centos-base:v0.2.0
 
-RUN dnf upgrade -y -q; dnf clean all
-RUN dnf install -y -q java-headless tar wget; dnf clean all
+RUN yum upgrade -y -q; yum clean all
+RUN yum install -y -q java-headless tar wget; yum clean all
 
 EXPOSE 2181 2888 3888
 
