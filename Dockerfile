@@ -5,7 +5,7 @@ RUN yum install -y -q java-headless tar wget; yum clean all
 
 EXPOSE 2181 2888 3888
 
-ENV ZK_VERSION 3.5.1-alpha
+ENV ZK_VERSION 3.5.4-beta
 RUN wget -q http://mirror.ox.ac.uk/sites/rsync.apache.org/zookeeper/zookeeper-${ZK_VERSION}/zookeeper-${ZK_VERSION}.tar.gz -O - | tar -xzf -; mv zookeeper-${ZK_VERSION} /zookeeper
 
 VOLUME /data
